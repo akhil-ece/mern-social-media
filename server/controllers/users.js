@@ -1,5 +1,5 @@
-import User from "../models/User.js";
-
+import UsersDAL from "../DAL/UsersDAL.js";
+const User = new UsersDAL();
 /* READ */
 export const getUser = async (req, res) => {
   try {

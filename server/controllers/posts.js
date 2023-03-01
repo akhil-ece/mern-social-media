@@ -1,12 +1,15 @@
-import Post from "../models/Post.js";
-import User from "../models/User.js";
+import PostsDAL from "../DAL/PostsDAL.js";
+import UsersDAL from "../DAL/UsersDAL.js";
+
+const User = new UsersDAL();
+const Post = new PostsDAL();
 
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
     const user = await User.findById(userId);
-    const newPost = new Post({
+    const newPost = {
       userId,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -16,8 +19,8 @@ export const createPost = async (req, res) => {
       picturePath,
       likes: {},
       comments: [],
-    });
-    await newPost.save();
+    };
+    await Post.insertOne(newPost);
 
     const post = await Post.find();
     res.status(201).json(post);

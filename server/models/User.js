@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const UserSchema = new mongoose.Schema(
+const UserSchema = 
   {
     firstName: {
       type: String,
@@ -37,9 +35,7 @@ const UserSchema = new mongoose.Schema(
     occupation: String,
     viewedProfile: Number,
     impressions: Number,
-  },
-  { timestamps: true }
-);
+  }
 
-const User = mongoose.model("User", UserSchema);
+const User = UserSchema;
 export default User;

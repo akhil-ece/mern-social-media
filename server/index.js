@@ -42,6 +42,8 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
+const MONGO_URL='mongodb://localhost:27017';
+const PORT=3001;
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register);
@@ -53,9 +55,8 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001;
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
