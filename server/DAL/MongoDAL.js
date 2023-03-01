@@ -1,6 +1,6 @@
 import { getDb, connectToServer } from '../Utilities/conn.js';
 import { MongoClient } from 'mongodb';
-import ObjectId from 'mongodb';
+import { ObjectId } from "mongodb";
 export default class MongoDAL {
   constructor(collection) {
     this.collection = collection;
@@ -48,6 +48,6 @@ export default class MongoDAL {
     let dbContext  = await getDb();
     let collectionContext = dbContext.collection(this.collection);
     var resp = await collectionContext.findOne(new ObjectId(id));
-    return resp.value;
+    return resp;
   }
 }
